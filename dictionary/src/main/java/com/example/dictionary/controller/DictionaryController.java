@@ -18,7 +18,7 @@ public class DictionaryController {
     private static final Logger logger = LoggerFactory.getLogger(DictionaryController.class.getName());
 
     // Placeholder for the actual implementation
-    // This class will handle HTTP requests related to dictionary operations
+    // This class will handle HTTP requests related to dictionary operations.
     // and interact with the DictionaryService to fetch word definitions.
 
     // Example method signatures:

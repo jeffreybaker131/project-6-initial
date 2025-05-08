@@ -43,4 +43,37 @@ public class AggregatorService {
 
     }
 
+    public List<Entry> getAllPalindromes() {
+
+        final List<Entry> candidates = new ArrayList<>();
+
+        // Iterate from a to z
+        IntStream.range('a', '{')
+                .mapToObj(i -> Character.toString(i))
+                .forEach(c -> {
+
+                    // get words starting and ending with character
+                    List<Entry> startsWith = restClient.getWordsStartingWith(c);
+                    List<Entry> endsWith = restClient.getWordsEndingWith(c);
+
+                    // keep entries that exist in both lists
+                    List<Entry> startsAndEndsWith = new ArrayList<>(startsWith);
+                    startsAndEndsWith.retainAll(endsWith);
+
+                    // store list with existing entries
+                    candidates.addAll(startsAndEndsWith);
+
+                });
+
+        // test each entry for palindrome, sort and return
+        return candidates.stream()
+                .filter(entry -> {
+                    String word = entry.getWord();
+                    String reverse = new StringBuilder(word).reverse()
+                            .toString();
+                    return word.equals(reverse);
+                })
+                .sorted()
+                .collect(Collectors.toList());
+    }
 }

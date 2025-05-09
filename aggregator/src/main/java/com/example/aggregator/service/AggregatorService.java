@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class AggregatorService {
@@ -53,6 +55,7 @@ public class AggregatorService {
                 .forEach(c -> {
 
                     // get words starting and ending with character
+                    AggregatorRestClient restClient;
                     List<Entry> startsWith = restClient.getWordsStartingWith(c);
                     List<Entry> endsWith = restClient.getWordsEndingWith(c);
 

@@ -57,20 +57,20 @@ public class AggregatorController {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        Entry entry = aggregatorService.getAllPalindromes(word);
+        Entry entry = (Entry) aggregatorService.getAllPalindromes();
         stopWatch.stop();
 
         long nanoSeconds = stopWatch.getLastTaskTimeNanos();
         String message = new StringBuilder()
                 .append("Retrieved entry for [")
-                .append(word)
+                .append()
                 .append("] in ")
                 .append(nanoSeconds / 1000000.0)
                 .append("ms")
                 .toString();
         logger.info(message);
 
-        return entry;
+        return (List<Entry>) entry;
     }
 
     @GetMapping("getWordsThatContainSuccessiveLettersAndStartsWith/{chars}")
